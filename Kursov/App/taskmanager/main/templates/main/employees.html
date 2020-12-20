@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Сотрудники
+{% endblock %}
+{% block link %}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/r-2.2.6/sc-2.0.3/datatables.min.css"/>
+{% endblock %}
+{% block content %}
+    <h1>Сотрудники</h1><br>
+
+<form action="" method="POST">
+    <div class="card border-white text-center">
+  <div class="card-body">
+    {% csrf_token %}
+       {{ form3.as_p }}
+        <input type="Submit" class="btn btn-dark" name="submit" value="Submit"/>
+      </div>
+</div>
+</form>
+
+    {% if submitbutton == "Submit" %}
+   <br> <h2>Информация о сотруднике</h2><br>
+<!--  <div class="card text-white bg-dark border-white mb-3" style="max-width: 18rem;">-->
+<!--    <div class="card-body">-->
+<!--      <h5 class="card-title">{{FIO}}</h5>-->
+<!-- <p class="card-text"> {% for el in empl %}{{ el.post }}</p>-->
+<!--    </div>-->
+<!--    <div class="card-footer">-->
+<!--      <small class="text-muted ">Для связи: {{el.email}}{% endfor %}</small>-->
+<!--    </div>-->
+<!--  </div>-->
+
+        <table class="table table-bordered table-dark">
+        <tr>
+            <th>Сотрудник</th>
+            <th>Должность</th>
+        </tr>
+        {% for el in empl %}
+        <tr>
+            <td>{{ el.FIO }}</td>
+            <td>{{ el.post }}</td>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Table
+{% endblock %}
+
+{% block content %}
+    <h1>Проекты</h1>
+    <table class="table table-bordered table-dark" >
+        <tr>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Описание</th>
+            <th>Клиент</th>
+            <th colspan="6">Сотрудники</th>
+        </tr>
+        {% for el in projects%}
+        <tr>
+            <td>{{ el.name }}</td>
+            <td>{{ el.price }}</td>
+            <td>{{ el.describe }}</td>
+            <td>{{ el.client }}</td>
+
+                {% for em in el.employee.all%}
+                  <td> {{em.FIO}}</td >
+            {% endfor %}
+            {% endfor %}
+        </tr>
+
+    </table>
+
+{% endblock %}
